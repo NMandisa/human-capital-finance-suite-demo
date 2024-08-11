@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Copyright (c) 2024 - . ~ Author : Noxolo.Mkhungo  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/jpa
+    https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:property-placeholder location="classpath:core.properties"/>
+    <context:annotation-config />
+    <context:component-scan base-package="za.co.mkhungo.core"/>
+
+    <context:component-scan base-package="za.co.mkhungo.core.repository">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
+
+    <context:component-scan base-package="za.co.mkhungo.core.benefits.repository">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
+
+    <context:component-scan base-package="za.co.mkhungo.core.employee.repository">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
+
+    <context:component-scan base-package="za.co.mkhungo.core.finance.repository">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
+
+    <context:component-scan base-package="za.co.mkhungo.core.performance.repository">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
+
+    <jpa:repositories base-package="za.co.mkhungo.core.repository" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager"/>
+    <jpa:repositories base-package="za.co.mkhungo.core.benefits.repository" entity-manager-factory-ref="entityManagerFactoryBenefits" transaction-manager-ref="transactionManagerBenefits"/>
+    <jpa:repositories base-package="za.co.mkhungo.core.employee.repository" entity-manager-factory-ref="entityManagerFactoryEmployee" transaction-manager-ref="transactionManagerEmployee"/>
+    <jpa:repositories base-package="za.co.mkhungo.core.finance.repository" entity-manager-factory-ref="entityManagerFactoryFinance" transaction-manager-ref="transactionManagerFinance"/>
+    <jpa:repositories base-package="za.co.mkhungo.core.performance.repository" entity-manager-factory-ref="entityManagerFactoryPerformance" transaction-manager-ref="transactionManagerPerformance"/>
+
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close" primary="true">
+        <constructor-arg ref="hikariConfig" />
+    </bean>
+
+    <bean id="dataSourceBenefits" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
+        <constructor-arg ref="hikariConfigBenefits" />
+    </bean>
+
+    <bean id="dataSourceEmployee" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
+        <constructor-arg ref="hikariConfigEmployee" />
+    </bean>
+
+    <bean id="dataSourceFinance" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
+        <constructor-arg ref="hikariConfigFinance" />
+    </bean>
+
+    <bean id="dataSourcePerformance" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
+        <constructor-arg ref="hikariConfigPerformance" />
+    </bean>
+
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="${hikari.config.poolName}" />
+        <property name="connectionTestQuery" value="${hikari.config.connectionTestQuery}" />
+        <property name="dataSourceClassName" value="${hikari.config.dataSourceClassName}" />
+        <property name="autoCommit" value="false"/>
+        <property name="maximumPoolSize" value="${hikari.config.maximumPoolSize}" />
+        <property name="minimumIdle" value="${hikari.config.minimumIdle}"/>
+        <property name="idleTimeout" value="${hikari.config.idleTimeout}"/>
+        <property name="connectionTimeout" value="${hikari.config.connection-timeout}"/>
+        <property name="transactionIsolation" value="${hikari.config.transactionIsolation}"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">${hikari.config.dataSource.url}</prop>
+                <prop key="user">${hikari.config.dataSource.user}</prop>
+                <prop key="password">${hikari.config.dataSource.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hikariConfigBenefits" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="${hikari.config.benefits.poolName}" />
+        <property name="connectionTestQuery" value="${hikari.config.connectionTestQuery}" />
+        <property name="dataSourceClassName" value="${hikari.config.dataSourceClassName}" />
+        <property name="autoCommit" value="false"/>
+        <property name="maximumPoolSize" value="${hikari.config.maximumPoolSize}" />
+        <property name="minimumIdle" value="${hikari.config.minimumIdle}"/>
+        <property name="idleTimeout" value="${hikari.config.idleTimeout}"/>
+        <property name="connectionTimeout" value="${hikari.config.connection-timeout}"/>
+        <property name="transactionIsolation" value="${hikari.config.transactionIsolation}"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">${hikari.config.benefits.dataSource.url}</prop>
+                <prop key="user">${hikari.config.dataSource.user}</prop>
+                <prop key="password">${hikari.config.dataSource.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hikariConfigEmployee" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="${hikari.config.employee.poolName}" />
+        <property name="connectionTestQuery" value="${hikari.config.connectionTestQuery}" />
+        <property name="dataSourceClassName" value="${hikari.config.dataSourceClassName}" />
+        <property name="autoCommit" value="false"/>
+        <property name="maximumPoolSize" value="${hikari.config.maximumPoolSize}" />
+        <property name="minimumIdle" value="${hikari.config.minimumIdle}"/>
+        <property name="idleTimeout" value="${hikari.config.idleTimeout}"/>
+        <property name="connectionTimeout" value="${hikari.config.connection-timeout}"/>
+        <property name="transactionIsolation" value="${hikari.config.transactionIsolation}"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">${hikari.config.employee.dataSource.url}</prop>
+                <prop key="user">${hikari.config.dataSource.user}</prop>
+                <prop key="password">${hikari.config.dataSource.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hikariConfigFinance" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="${hikari.config.finance.poolName}" />
+        <property name="connectionTestQuery" value="${hikari.config.connectionTestQuery}" />
+        <property name="dataSourceClassName" value="${hikari.config.dataSourceClassName}" />
+        <property name="autoCommit" value="false"/>
+        <property name="maximumPoolSize" value="${hikari.config.maximumPoolSize}" />
+        <property name="minimumIdle" value="${hikari.config.minimumIdle}"/>
+        <property name="idleTimeout" value="${hikari.config.idleTimeout}"/>
+        <property name="connectionTimeout" value="${hikari.config.connection-timeout}"/>
+        <property name="transactionIsolation" value="${hikari.config.transactionIsolation}"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">${hikari.config.finance.dataSource.url}</prop>
+                <prop key="user">${hikari.config.dataSource.user}</prop>
+                <prop key="password">${hikari.config.dataSource.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="hikariConfigPerformance" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="${hikari.config.performance.poolName}" />
+        <property name="connectionTestQuery" value="${hikari.config.connectionTestQuery}" />
+        <property name="dataSourceClassName" value="${hikari.config.dataSourceClassName}" />
+        <property name="autoCommit" value="false"/>
+        <property name="maximumPoolSize" value="${hikari.config.maximumPoolSize}" />
+        <property name="minimumIdle" value="${hikari.config.minimumIdle}"/>
+        <property name="idleTimeout" value="${hikari.config.idleTimeout}"/>
+        <property name="connectionTimeout" value="${hikari.config.connection-timeout}"/>
+        <property name="transactionIsolation" value="${hikari.config.transactionIsolation}"/>
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">${hikari.config.performance.dataSource.url}</prop>
+                <prop key="user">${hikari.config.dataSource.user}</prop>
+                <prop key="password">${hikari.config.dataSource.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="za.co.mkhungo.core.model" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="jpa.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="entityManagerFactoryBenefits" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceBenefits" />
+        <property name="packagesToScan" value="za.co.mkhungo.core.benefits.model" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="jpa.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="entityManagerFactoryEmployee" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceEmployee" />
+        <property name="packagesToScan" value="za.co.mkhungo.core.employee.model" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="jpa.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="entityManagerFactoryFinance" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceFinance" />
+        <property name="packagesToScan" value="za.co.mkhungo.core.finance.model" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="jpa.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="entityManagerFactoryPerformance" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourcePerformance" />
+        <property name="packagesToScan" value="za.co.mkhungo.core.performance.model" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="jpa.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" primary="true">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <bean id="transactionManagerBenefits" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryBenefits" />
+    </bean>
+
+    <bean id="transactionManagerEmployee" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryEmployee" />
+    </bean>
+
+    <bean id="transactionManagerFinance" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryFinance" />
+    </bean>
+
+    <bean id="transactionManagerPerformance" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryPerformance" />
+    </bean>
+
+    <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+</beans>

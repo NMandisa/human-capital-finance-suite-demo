@@ -1,0 +1,4 @@
+rootProject.name = 'hcfs-services'
+
+include 'employee-service'
+include 'financial-service'
