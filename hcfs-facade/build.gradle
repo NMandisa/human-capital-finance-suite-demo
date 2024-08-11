@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+description = 'hcfs-facade'
 group = 'za.co.mkhungo.facade'
 version = '0.0.1-SNAPSHOT'
 
@@ -11,7 +12,9 @@ repositories {
 
 dependencies {
     implementation project (':hcfs-core')
-    implementation project (':hcfs-util')
+    implementation project  (':hcfs-util')
+    /*providedCompile project(':hcfs-core')
+    providedCompile project(':hcfs-util')*/
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

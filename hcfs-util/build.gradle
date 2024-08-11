@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+description = 'hcfs-util'
 group = 'za.co.mkhungo.utils'
 version = '0.0.1-SNAPSHOT'
 

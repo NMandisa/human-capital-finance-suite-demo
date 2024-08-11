@@ -2,8 +2,13 @@ plugins {
     id 'java'
     id 'idea'
     id 'eclipse'
-    //id 'project-report'
+    id 'project-report'
+    id 'ear'
 }
+
+description = 'human-capital-finance-suite'
+group = 'za.co.mkhungo'
+version = '0.0.1-SNAPSHOT'
 
 java{
     withSourcesJar()
@@ -32,6 +37,38 @@ subprojects {
     }
 
     dependencies {
+       /* implementation project (':hcfs-core')
+        implementation project (':hcfs-util')
+        implementation project (':hcfs-web-services')
+        implementation project (':hcfs-facade')
+        implementation project (':hcfs-services')
+        implementation project ('hcfs-services:finance-service')
+        implementation project ('cfs-services:employee-service')
+        implementation project (':hcfs-services:benefits-service')
+        implementation project (':hcfs-services:performance-service')
+        implementation project (':hcfs-web-services:employee-api')
+        implementation project (':hcfs-web-services:payroll-api')
+        implementation project (':hcfs-web-services:benefits-api')
+        implementation project (':hcfs-web-services:performance-api')*/
+        /* jars */
+        /*earlib project(path: ':hcfs-util')
+        earlib project(path: ':hcfs-util', configuration: 'compile')
+
+        earlib project(path: ':hcfs-core')
+        earlib project(path: ':hcfs-core', configuration: 'compile')
+
+        earlib project(path: ':hcfs-facade')
+        earlib project(path: ':hcfs-facade', configuration: 'compile')*/
+
+        /*earlib project(path: ':hcfs-services')
+        earlib project(path: ':hcfs-services', configuration: 'compile')
+
+        *//* wars *//*
+        deploy project(path: ':war1', configuration: 'archives')
+        earlib project(path: ':war1', configuration: 'earshared')
+
+        deploy project(path: ':war2', configuration: 'archives')
+        earlib project(path: ':war2', configuration: 'earshared')*/
 
         implementation(group: 'org.springframework', name: 'spring-core', version: '6.1.0') {
             exclude(module: 'commons-logging')
@@ -70,9 +107,13 @@ subprojects {
     }
 
 // Apply a specific Java toolchain to ease working on different environments.
-    java {
+/*    java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(20)
         }
+    }*/
+
+    htmlDependencyReport {
+    projects = project.allprojects
     }
 }

@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+description = 'benefits-service'
 group = 'za.co.mkhungo.benefit.service'
 version = '0.0.1-SNAPSHOT'
 

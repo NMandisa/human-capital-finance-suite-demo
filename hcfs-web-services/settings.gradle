@@ -1,0 +1,6 @@
+rootProject.name = 'hcfs-web-services'
+
+include 'benefits-api'
+include 'employee-aoi'
+include 'payroll-aoi'
+include 'performance-api'

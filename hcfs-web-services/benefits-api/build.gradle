@@ -2,14 +2,19 @@ plugins {
     id 'war'
 }
 
-group = 'za.co.mkhungo.web.service'
+description = 'benefits-api'
+group = 'za.co.mkhungo.benefit.web.service'
 version = '0.0.1-SNAPSHOT'
+
+
+jar.enabled = true
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }

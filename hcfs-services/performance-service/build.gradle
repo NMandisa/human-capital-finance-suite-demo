@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+description = 'performance-service'
 group = 'za.co.mkhungo.performance.service'
 version = '0.0.1-SNAPSHOT'
 

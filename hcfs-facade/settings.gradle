@@ -1,1 +1,4 @@
 rootProject.name = 'hcfs-facade'
+
+include 'hcfs-util'
+include 'hcfs-core'

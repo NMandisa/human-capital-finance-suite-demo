@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+description = 'finance-service'
 group = 'za.co.mkhungo.finance.service'
 version = '0.0.1-SNAPSHOT'
 

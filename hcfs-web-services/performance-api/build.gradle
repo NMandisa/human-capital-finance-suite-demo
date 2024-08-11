@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id 'war'
 }
 
-description = 'employee-service'
-group = 'za.co.mkhungo.employee.service'
+description = 'performance-api'
+group = 'za.co.mkhungo.performance.web.service'
 version = '0.0.1-SNAPSHOT'
 
 repositories {
