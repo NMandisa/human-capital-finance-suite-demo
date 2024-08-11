@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'za.co.mkhungo.facade'
+group = 'za.co.mkhungo.benefit.service'
 version = '0.0.1-SNAPSHOT'
 
 repositories {
@@ -10,9 +10,6 @@ repositories {
 }
 
 dependencies {
-    implementation project (':hcfs-core')
-    implementation project (':hcfs-util')
-
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
