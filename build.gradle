@@ -37,19 +37,7 @@ subprojects {
     }
 
     dependencies {
-       /* implementation project (':hcfs-core')
-        implementation project (':hcfs-util')
-        implementation project (':hcfs-web-services')
-        implementation project (':hcfs-facade')
-        implementation project (':hcfs-services')
-        implementation project ('hcfs-services:finance-service')
-        implementation project ('cfs-services:employee-service')
-        implementation project (':hcfs-services:benefits-service')
-        implementation project (':hcfs-services:performance-service')
-        implementation project (':hcfs-web-services:employee-api')
-        implementation project (':hcfs-web-services:payroll-api')
-        implementation project (':hcfs-web-services:benefits-api')
-        implementation project (':hcfs-web-services:performance-api')*/
+
         /* jars */
         /*earlib project(path: ':hcfs-util')
         earlib project(path: ':hcfs-util', configuration: 'compile')

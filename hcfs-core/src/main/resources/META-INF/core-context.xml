@@ -45,6 +45,8 @@
     <jpa:repositories base-package="za.co.mkhungo.core.finance.repository" entity-manager-factory-ref="entityManagerFactoryFinance" transaction-manager-ref="transactionManagerFinance"/>
     <jpa:repositories base-package="za.co.mkhungo.core.performance.repository" entity-manager-factory-ref="entityManagerFactoryPerformance" transaction-manager-ref="transactionManagerPerformance"/>
 
+    <jpa:auditing auditor-aware-ref="springSecurityAuditorAware" />
+
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close" primary="true">
         <constructor-arg ref="hikariConfig" />
     </bean>

@@ -1,4 +1,4 @@
-package za.co.mkhungo.employee.controller;
+package za.co.mkhungo.performance.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @CrossOrigin(allowedHeaders = {"*"}, origins = "*")
 @RestController
-@RequestMapping("api/employees")
-public class EmployeeRootController {
+@RequestMapping("api/performance")
+public class PerformanceRootController {
 }
