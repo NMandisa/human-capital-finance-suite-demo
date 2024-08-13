@@ -38,33 +38,19 @@ subprojects {
 
     dependencies {
 
-        /* jars */
-        /*earlib project(path: ':hcfs-util')
-        earlib project(path: ':hcfs-util', configuration: 'compile')
-
-        earlib project(path: ':hcfs-core')
-        earlib project(path: ':hcfs-core', configuration: 'compile')
-
-        earlib project(path: ':hcfs-facade')
-        earlib project(path: ':hcfs-facade', configuration: 'compile')*/
-
-        /*earlib project(path: ':hcfs-services')
-        earlib project(path: ':hcfs-services', configuration: 'compile')
-
-        *//* wars *//*
-        deploy project(path: ':war1', configuration: 'archives')
-        earlib project(path: ':war1', configuration: 'earshared')
-
-        deploy project(path: ':war2', configuration: 'archives')
-        earlib project(path: ':war2', configuration: 'earshared')*/
-
-        implementation(group: 'org.springframework', name: 'spring-core', version: '6.1.0') {
+        implementation(group: 'org.springframework', name: 'spring-core', version: '6.1.11') {
             exclude(module: 'commons-logging')
         }
-        implementation(group: 'org.springframework', name: 'spring-context', version: '6.1.0') {
+        implementation (group: 'org.springframework',name :'spring-aop',version :'6.1.11'){
             exclude(module: 'commons-logging')
         }
-        implementation(group: 'org.springframework', name: 'spring-beans', version: '6.1.0') {
+        implementation (group :'org.springframework',name:'spring-aspects',version:'6.1.11'){
+            exclude(module: 'commons-logging')
+        }
+        implementation(group: 'org.springframework', name: 'spring-context', version: '6.1.11') {
+            exclude(module: 'commons-logging')
+        }
+        implementation(group: 'org.springframework', name: 'spring-beans', version: '6.1.11') {
             exclude(module: 'commons-logging')
         }
         implementation 'org.apache.logging.log4j:log4j-api:2.20.0'

@@ -46,6 +46,7 @@
     <jpa:repositories base-package="za.co.mkhungo.core.performance.repository" entity-manager-factory-ref="entityManagerFactoryPerformance" transaction-manager-ref="transactionManagerPerformance"/>
 
     <jpa:auditing auditor-aware-ref="springSecurityAuditorAware" />
+    <tx:annotation-driven/>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close" primary="true">
         <constructor-arg ref="hikariConfig" />
@@ -167,8 +168,18 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="persistenceProvider" >
+            <bean class="org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider"/>
+        </property>
+        <property name="persistenceUnitName" value="hcfs_core_persistence" />
         <property name="packagesToScan" value="za.co.mkhungo.core.model" />
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <!--<property  name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true" />
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+            </bean>
+        </property>-->
         <property name="jpaProperties">
             <props>
                 <prop key="jpa.show_sql">true</prop>
@@ -241,4 +252,13 @@
     </bean>
 
     <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames" >
+            <list>
+                <value>message.core_local</value>
+            </list>
+        </property>
+    </bean>
+    
 </beans>
